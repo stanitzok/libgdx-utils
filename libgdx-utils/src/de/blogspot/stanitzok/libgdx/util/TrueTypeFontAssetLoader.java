@@ -33,9 +33,9 @@ import com.badlogic.gdx.utils.Array;
  * 
  * @author Thorsten Stanitzok
  */
-public class TtfAssetLoader
+public class TrueTypeFontAssetLoader
 		extends
-		SynchronousAssetLoader<BitmapFont, TtfAssetLoader.TtfAssetLoaderParameters> {
+		SynchronousAssetLoader<BitmapFont, TrueTypeFontAssetLoader.TrueTypeFontAssetLoaderParameters> {
 
 	private BitmapFont font;
 
@@ -56,7 +56,7 @@ public class TtfAssetLoader
 	 * 
 	 * @author Thorsten Stanitzok
 	 */
-	public class TtfAssetLoaderParameters extends
+	public class TrueTypeFontAssetLoaderParameters extends
 			AssetLoaderParameters<BitmapFont> {
 		private int fontSize = 12;
 		private String characters = FreeTypeFontGenerator.DEFAULT_CHARS;
@@ -68,7 +68,7 @@ public class TtfAssetLoader
 		 * @param flip whether to flip the font horizontally, see
 		 *        {@link BitmapFont#BitmapFont(FileHandle, TextureRegion, boolean)}
 		 */
-		public TtfAssetLoaderParameters(final int fontSize,
+		public TrueTypeFontAssetLoaderParameters(final int fontSize,
 				final String characters, final boolean flip) {
 			this.fontSize = fontSize;
 			this.characters = characters;
@@ -107,16 +107,16 @@ public class TtfAssetLoader
 	 * @see ExternalFileHandleResolver
 	 * @see InternalFileHandleResolver
 	 */
-	public TtfAssetLoader(final FileHandleResolver resolver) {
+	public TrueTypeFontAssetLoader(final FileHandleResolver resolver) {
 		super(resolver);
 	}
 
 	@Override
 	public BitmapFont load(final AssetManager assetManager,
 			final String fileName, final FileHandle file,
-			final TtfAssetLoaderParameters parameter) {
+			final TrueTypeFontAssetLoaderParameters parameter) {
 		final FreeTypeFontGenerator generator = new FreeTypeFontGenerator(file);
-		int fontSize = TtfAssetLoader.DEFAULT_FONT_SIZE;
+		int fontSize = TrueTypeFontAssetLoader.DEFAULT_FONT_SIZE;
 		String characters = FreeTypeFontGenerator.DEFAULT_CHARS;
 		boolean flip = false;
 		if (parameter != null) {
@@ -131,7 +131,7 @@ public class TtfAssetLoader
 
 	@Override
 	public Array<AssetDescriptor> getDependencies(final String fileName,
-			final FileHandle file, final TtfAssetLoaderParameters parameter) {
+			final FileHandle file, final TrueTypeFontAssetLoaderParameters parameter) {
 		return null;
 	}
 }
